@@ -34,8 +34,8 @@ jobs:
     # working_directory: ~/app
     steps:
       - checkout
-      # - setup_remote_docker:
-      #     version: 20.10.14
+      - setup_remote_docker:
+          version: 20.10.14
       - run:
           name: Install dependencies
           command: echo "Nothing needs to be installed"
