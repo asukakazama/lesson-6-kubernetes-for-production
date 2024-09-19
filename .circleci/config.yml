@@ -30,8 +30,8 @@ version: 2.1
 jobs:
   build:            # job name
     docker:         # executor type
-      - image: node:13 # Docker image that installs Node 13,
-    working_directory: ~/app
+      - image: circleci/python:3.8 # Docker image that installs Node 13 and Docker,
+    # working_directory: ~/app
     steps:
       - checkout
       # - setup_remote_docker:
