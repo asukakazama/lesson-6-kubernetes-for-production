@@ -30,12 +30,12 @@ version: 2.1
 jobs:
   build:            # job name
     docker:         # executor type
-      - image: cimg/node:13 # Docker image that installs Node 13,
+      - image: node:13 # Docker image that installs Node 13,
     working_directory: ~/app
     steps:
       - checkout
-      - setup_remote_docker:
-          version: 20.10.14
+      # - setup_remote_docker:
+      #     version: 20.10.14
       - run:
           name: Install dependencies
           command: echo "Nothing needs to be installed"
