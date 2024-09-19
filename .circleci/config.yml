@@ -30,7 +30,7 @@ version: 2.1
 jobs:
   build:            # job name
     docker:         # executor type
-      - image: circleci/python:3.8 # Docker image that installs Node 13 and Docker,
+      - image: cimg/base:stable
     # working_directory: ~/app
     steps:
       - checkout
@@ -42,7 +42,6 @@ jobs:
       - run:
           name: Build and push Docker image
           command: |
-            node --version
             docker --version
             docker build -t simple-reverse-proxy .    
             docker tag simple-reverse-proxy asukakazama/simple-reverse-proxy:latest
