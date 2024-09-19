@@ -1,0 +1,51 @@
+# config for travis ci
+
+# language: node_js
+# node_js:
+#   - 13
+
+# services:
+#   - docker
+
+# # Pre-testing installs
+# install:
+#   - echo "nothing needs to be installed"
+
+# # Scripts to be run such as tests
+# before_script:
+#   - echo "no tests"
+
+# script:
+#   - docker --version # print the version for logging
+#   - docker build -t simple-reverse-proxy .
+#   - docker tag simple-reverse-proxy asukakazama/simple-reverse-proxy:latest
+
+# after_success:
+#   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+#   - docker push asukakazama/simple-reverse-proxy
+
+
+# config for circle ci
+version: 2.1
+jobs:
+  build:            # job name
+    docker:         # executor type
+      - image: cimg/base:current # Docker image that installs Docker and has Git,
+    working_directory: ~/app
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 20.10.14
+      - run:
+          name: Install dependencies
+          command: echo "Nothing needs to be installed"
+      - run:
+          name: Build and push Docker image
+          command: |
+            node --version
+            docker --version
+            docker build -t simple-reverse-proxy .    
+            docker tag simple-reverse-proxy asukakazama/simple-reverse-proxy:latest
+            echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+            docker push asukakazama/simple-reverse-proxy
+
