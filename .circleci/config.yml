@@ -30,7 +30,7 @@ version: 2.1
 jobs:
   build:            # job name
     docker:         # executor type
-      - image: cimg/base:stable
+      - image: circleci/python:3.8
     # working_directory: ~/app
     steps:
       - checkout
